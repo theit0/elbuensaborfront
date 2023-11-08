@@ -4,15 +4,19 @@ import AppRoutes from "./routes/AppRoutes"
 import {BrowserRouter as Router} from "react-router-dom"
 import './App.css'
 import { Container } from "react-bootstrap"
+import Loader from "./components/Loader/Loader"
+import { Suspense  } from "react"
+
 function App() {
-  
 
   return (
     <>
       <Router>
         <Header/>
           <Container style={{minHeight:"100vh",minWidth:"100%"}}>
-            <AppRoutes/>
+            <Suspense fallback={<Loader/>}>
+              <AppRoutes/>
+            </Suspense>
           </Container>
         <Footer/>
       </Router>
