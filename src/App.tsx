@@ -13,7 +13,7 @@ function App() {
     <>
       <Router>
         <Header/>
-          <Container style={{minHeight:"100vh",minWidth:"100%"}}>
+          <Container style={{minHeight:"100vh",minWidth:"100%",padding:"0"}}>
             <Suspense fallback={<Loader/>}>
               <AppRoutes/>
             </Suspense>
