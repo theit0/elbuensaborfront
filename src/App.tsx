@@ -6,7 +6,7 @@ import './App.css'
 import { Container } from "react-bootstrap"
 import Loader from "./components/Loader/Loader"
 import { Suspense  } from "react"
-
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
 
   return (
