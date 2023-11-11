@@ -19,6 +19,9 @@ const Header = () => {
             <div className={isMenuToggled ? 'navlinks-dropped' : 'navlinks'} >
                 <Link to="/" className='navlink'><img src="src/assets/home.svg"/>Inicio</Link>
             </div>
+            <div className={isMenuToggled ? 'navlinks-dropped' : 'navlinks'} >
+                <Link to="/gestionar-articulos-insumo" className='navlink'><img src="src/assets/baguette.svg"/>ABM Artículos Insumo</Link>
+            </div>
             
             <button className='dropdown-button' onClick={() => setIsMenuToggled(!isMenuToggled)}>
                 {
