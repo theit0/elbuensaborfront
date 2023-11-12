@@ -72,9 +72,10 @@ const handleDelete = async () => {
     const validationSchema = () => {
         return Yup.object().shape({
         id: Yup.number().integer().min(0),
-        precio: Yup.number().min(0).required('El precio es requerido'),
+        precio_venta: Yup.number().min(0).required('El precio es requerido'),
         denominacion: Yup.string().required('La descripcion es requerida'),
-        image: Yup.string().required('La URL de la imagen es requerida'),
+        descripcion: Yup.string().required('La denominacion es requerida'),
+        url_imagen: Yup.string().required('La URL de la imagen es requerida'),
         });
     };
     
@@ -105,7 +106,7 @@ const handleDelete = async () => {
 
                 <Modal.Body>
                     <p> ¿Está seguro que desea eliminar el articulo
-                        <br /> <strong> {artl.description} </strong> ?
+                        <br /> <strong> {artl.descripcion} </strong> ?
                     </p>
                 </Modal.Body>
 
@@ -136,16 +137,16 @@ const handleDelete = async () => {
                     <Form onSubmit={formik.handleSubmit}>
                         
                     {"Denominacion"}
-                        <Form.Group controlId="formTitulo">
+                        <Form.Group controlId="formDenomination">
                             {/*}<Form.Label>titulo</Form.Label>{*/}
                             <Form.Control
-                                name="Denominacion"
+                                name="denominacion"
                                 type="text"
-                                value={formik.values.description || ''}
+                                value={formik.values.denominacion || ''}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 isInvalid={Boolean(formik.errors.denominacion &&
-                                formik.touched.description)}
+                                formik.touched.denominacion)}
                             />
                             <Form.Control.Feedback type="invalid">
                                 {formik.errors.denominacion}
@@ -157,7 +158,7 @@ const handleDelete = async () => {
                         <Form.Group controlId="formPrice">
                            {/*} <Form.Label>Precio</Form.Label>{*/}
                             <Form.Control
-                                name="precio"
+                                name="precioVenta"
                                 type="number"
                                 value={formik.values.precioVenta || ''}
                                 onChange={formik.handleChange}
@@ -170,12 +171,29 @@ const handleDelete = async () => {
                              </Form.Control.Feedback>
                         </Form.Group>
 
+                        {"Descripcion"}                    
+                        <Form.Group controlId="formDescripcion">
+                           {/*} <Form.Label>Precio</Form.Label>{*/}
+                            <Form.Control
+                                name="descripcion"
+                                type="text"
+                                value={formik.values.descripcion || ''}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                isInvalid={Boolean(formik.errors.descripcion &&
+                                formik.touched.descripcion)}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                {formik.errors.descripcion}
+                             </Form.Control.Feedback>
+                        </Form.Group>
+
                     
                     {"Imagen"}                
                         <Form.Group controlId="formImage">
                           {/*}  <Form.Label>Imagen</Form.Label>{*/}
                             <Form.Control
-                                name="image"
+                                name="urlImagen"
                                 type="text"
                                 value={formik.values.urlImagen || ''}
                                 onChange={formik.handleChange}

@@ -43,13 +43,13 @@ const ProductTable = () => {
             id: 0,
             denominacion: "",
             precioVenta: 0,
-            description: "",
+            descripcion: "",
             costo: 0,
             urlImagen: "",
             tiempoEstimadoCocina: 0,
-            fechaAlta : new Date(2000,1,1),
-            fechaBaja : new Date(2000,1,1),
-            fechaModificacion:new Date(2000,1,1)
+            fechaAlta : new Date(),
+            fechaBaja : new Date(),
+            fechaModificacion:new Date()
             };
     };
 
