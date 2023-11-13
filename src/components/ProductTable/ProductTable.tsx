@@ -125,7 +125,7 @@ const ProductTable = () => {
                       </svg>
                     </button>
                   </td>
-                  <td style={{color:"#949494"}}>Añadir insumo...</td>
+                  <td style={{color:"#949494"}}>Añadir Articulo...</td>
                   <td style={{color:"#949494"}}>...</td>
                   <td style={{color:"#949494"}}>...</td>
                   <td style={{color:"#949494"}}>...</td>
