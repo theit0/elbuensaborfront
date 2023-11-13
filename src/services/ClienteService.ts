@@ -6,7 +6,7 @@ const BASE_URL = 'http://localhost:8080/api/v1';
 export const ClienteService = {
 
     getClientes : async () : Promise<Cliente[]>  => {
-        const response = await fetch(`${BASE_URL}/clientes`);
+        const response = await fetch(`${BASE_URL}/clientes/busquedaPorAltaC`);
         const data = await response.json();
 
         return data;
@@ -48,13 +48,20 @@ export const ClienteService = {
         const data = await response.json();
         return data;
     },
-    deleteCliente: async (id:number): Promise<void> => {
-        await fetch(`${BASE_URL}/clientes/${id}`, {
-            method: "DELETE"
+    deleteCliente: async (id:number,cliente : Cliente): Promise<void> => {
+        const fechaBaja= new Date();
+        const response = await fetch(`${BASE_URL}/clientes/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({...cliente,fechaBaja}), // Envía la nueva fecha de baja en el cuerpo de la solicitud
         });
 
-}
+        const data = await response.json();
+        return data;
 
 }
 
-  
+}
+
