@@ -1,4 +1,4 @@
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Dropdown, Form, Modal } from "react-bootstrap";
 //Dependencias para validar los formularios
 
 
@@ -9,6 +9,10 @@ import { toast } from 'react-toastify';
 import { ArticuloManu } from "../../Types/ArticuloManu";
 import { ArticuloManuService } from "../../services/ArticuloManuService";
 import { ModalType } from "../../Types/ModalTypes";
+import { RubroArticuloService } from "../../services/RubroArticulo";
+import { useEffect, useState } from "react";
+import { RubroArticulo } from "../../Types/RubroArticulo";
+import './ProductModal.css'
 
 
 
@@ -68,6 +72,19 @@ const handleDelete = async () => {
     }
     
 }
+const [rubros, setRubros] = useState<RubroArticulo[]>([]);
+useEffect(() => {
+    const fetchRubros = async () => {
+    try {
+        const data = await RubroArticuloService.getRubros();
+        setRubros(data);
+    } catch (error) {
+        console.error(error);
+        // Manejo de error, muestra un mensaje al usuario, etc.
+    }
+    };
+    fetchRubros();
+}, []);
         //YUP - Esquema de validación
     const validationSchema = () => {
         return Yup.object().shape({
@@ -187,6 +204,24 @@ const handleDelete = async () => {
                                 {formik.errors.urlImagen}
                              </Form.Control.Feedback>
                         </Form.Group>
+                        {"Rubro"}
+                        <Form.Group controlId="formRubroArticulo">
+                                    <Form.Label></Form.Label>
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="light" id="dropdown-rubro-articulo">
+                                            {
+                                                formik.values.rubroArticulo.denominacion || 'Rubro'
+                                            }
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                        {rubros.map((rubro) => (
+                                            <Dropdown.Item key={rubro.id}  onClick={() => formik.setValues({ ...formik.values, rubroArticulo: rubro })}>
+                                            {rubro.denominacion}
+                                            </Dropdown.Item>
+                                        ))}
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </Form.Group>
 
                             <Modal.Footer className="mt-4">
                                 

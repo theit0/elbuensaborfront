@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { ArticuloManu } from "../../Types/ArticuloManu";
-import { Button, Table } from "react-bootstrap";
 import { ModalType } from "../../Types/ModalTypes";
 import { ArticuloManuService } from "../../services/ArticuloManuService";
 
@@ -8,8 +7,17 @@ import Loader from "../Loader/Loader";
 import ProductModal from "../ProductModal/ProductModal";
 import EditButton from "../EditButton/EditButton";
 import DeleteButton from "../DeleteButton/DeleteButton";
-
+import { RubroArticulo } from "../../Types/RubroArticulo";
+import { Table } from "react-bootstrap";
+import './ProductTable.css'
 const ProductTable = () => {
+    const rubroArticuloInitialize : RubroArticulo = {
+        denominacion: "",
+        id: 0,
+        fechaAlta: new Date(),
+        fechaBaja: new Date(),
+        fechaModificacion: new Date()
+      }
 
     //Variable que va a contener los datos recibidos por la API
     const [articles, setArticles] = useState<ArticuloManu[]>([]);
@@ -49,7 +57,8 @@ const ProductTable = () => {
             tiempoEstimadoCocina: 0,
             fechaAlta : new Date(),
             fechaBaja : new Date(),
-            fechaModificacion:new Date()
+            fechaModificacion:new Date(),
+            rubroArticulo:rubroArticuloInitialize
             };
     };
 
@@ -71,13 +80,13 @@ const ProductTable = () => {
 
 
   return (
-    <div className="m-3">
+    <section className="p-5 tabla-section">
 
-        {/* Botón para que cuando el usuario haga click llame a la función que declaramos */}
-            <Button onClick={() => handleClick("Nuevo Articulo",
-                initializeNewProduct(), ModalType.CREATE)}>
-                Nuevo Ariculo
-            </Button>
+    <div className="titulo-container">
+        <h1 style={{fontWeight:"800"}}>Articulos Manufacturados</h1>
+       
+    </div>
+           
 
     {isLoading ? <Loader/>: (
            
@@ -87,6 +96,7 @@ const ProductTable = () => {
                     <th> DENOMINACION </th>
                     <th> PRECIO </th>
                     <th> IMAGEN </th>
+                    <th>RUBRO ARTICULO</th>
                     <th> EDITAR</th>
                     <th> BORRAR </th>
                 </tr>
@@ -98,11 +108,32 @@ const ProductTable = () => {
                         <td> {article.denominacion} </td>
                         <td> {article.precioVenta} </td>
                         <td> <img src={article.urlImagen} alt={article.denominacion} style={{width: '50px'}} /> </td>
+                        <td>{article.rubroArticulo.denominacion}</td>
                         <td> <EditButton onClick={() => handleClick("Editar producto", article, ModalType.UPDATE)}/> </td>
                         <td> <DeleteButton onClick={() => handleClick("Borrar producto", article, ModalType.DELETE)} /> </td>
 
                     </tr>
                 ))}
+                 <tr className="add-row">
+                  <td>
+                    <button onClick={()=>handleClick("Nuevo articulo",initializeNewProduct(),ModalType.CREATE)} className="boton-agregar">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-circle-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#949494" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                        <path d="M9 12h6"></path>
+                        <path d="M12 9v6"></path>
+                      </svg>
+                    </button>
+                  </td>
+                  <td style={{color:"#949494"}}>Añadir insumo...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                </tr>
             </tbody>
 
         </Table>
@@ -125,7 +156,7 @@ const ProductTable = () => {
     )}
 
     
-    </div>
+    </section>
   )
 }
 

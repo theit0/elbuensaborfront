@@ -1,7 +1,9 @@
+import { RubroArticulo } from "./RubroArticulo";
+
 export interface ArticuloManu{
     id: number;
     denominacion : string;
-    description : string;
+    descripcion : string;
     tiempoEstimadoCocina: number;
     precioVenta: number;
     costo : number;
@@ -9,5 +11,5 @@ export interface ArticuloManu{
     fechaAlta : Date;
     fechaBaja: Date;
     fechaModificacion: Date
-
+    rubroArticulo:RubroArticulo;
 }
