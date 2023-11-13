@@ -72,10 +72,9 @@ const handleDelete = async () => {
     const validationSchema = () => {
         return Yup.object().shape({
         id: Yup.number().integer().min(0),
-        precio_venta: Yup.number().min(0).required('El precio es requerido'),
+        precioVenta: Yup.number().min(0).required('El precio es requerido'),
         denominacion: Yup.string().required('La descripcion es requerida'),
-        descripcion: Yup.string().required('La denominacion es requerida'),
-        url_imagen: Yup.string().required('La URL de la imagen es requerida'),
+        urlImagen: Yup.string().required('La URL de la imagen es requerida'),
         });
     };
     
@@ -106,7 +105,7 @@ const handleDelete = async () => {
 
                 <Modal.Body>
                     <p> ¿Está seguro que desea eliminar el articulo
-                        <br /> <strong> {artl.descripcion} </strong> ?
+                        <br /> <strong> {artl.denominacion} </strong> ?
                     </p>
                 </Modal.Body>
 
@@ -171,24 +170,7 @@ const handleDelete = async () => {
                              </Form.Control.Feedback>
                         </Form.Group>
 
-                        {"Descripcion"}                    
-                        <Form.Group controlId="formDescripcion">
-                           {/*} <Form.Label>Precio</Form.Label>{*/}
-                            <Form.Control
-                                name="descripcion"
-                                type="text"
-                                value={formik.values.descripcion || ''}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                isInvalid={Boolean(formik.errors.descripcion &&
-                                formik.touched.descripcion)}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {formik.errors.descripcion}
-                             </Form.Control.Feedback>
-                        </Form.Group>
-
-                    
+                        
                     {"Imagen"}                
                         <Form.Group controlId="formImage">
                           {/*}  <Form.Label>Imagen</Form.Label>{*/}
