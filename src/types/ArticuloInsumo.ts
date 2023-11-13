@@ -10,4 +10,7 @@ export interface ArticuloInsumo {
     stockMinimo:number;
     unidadMedida:UnidadMedida;
     rubroArticulo:RubroArticulo;
+    fechaAlta:Date;
+    fechaBaja:Date;
+    fechaModificacion:Date;
 }

@@ -1,47 +1,50 @@
+import axios from 'axios';
+import { ArticuloInsumo } from '../types/ArticuloInsumo';
 
-import { ArticuloInsumo } from "../types/ArticuloInsumo";
-const BASE_URL = "http://localhost:8080/api/v1";
+const BASE_URL = 'http://localhost:8080/api/v1/ArticuloInsumo';
 
 export const ArticuloInsumoService = {
-    getArticulosInsumo:async ():Promise<ArticuloInsumo[]> => {
-        const response = await fetch(`${BASE_URL}/ArticuloInsumo`);
-        const data = await response.json();
-        return data;
-    },
-
-    getArticuloInsumo:async (id:number):Promise<ArticuloInsumo> => {
-        const response = await fetch(`${BASE_URL}/ArticuloInsumo/${id}`);
-        const data = await response.json();
-        return data;
-    },
-
-    createArticuloInsumo:async (articuloInsumo:ArticuloInsumo):Promise<ArticuloInsumo> => {
-        const response = await fetch(`${BASE_URL}/ArticuloInsumo/`,{
-            method:"POST",
-            headers :{
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(articuloInsumo)
-        });
-        const data = await response.json();
-        return data;
-    },
-
-    updateArticuloInsumo:async (id:number,articuloInsumo:ArticuloInsumo):Promise<ArticuloInsumo> => {
-        const response = await fetch(`${BASE_URL}/ArticuloInsumo/${id}`,{
-            method:"PUT",
-            headers :{
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(articuloInsumo)
-        });
-        const data = await response.json();
-        return data;
-    },
-
-    deleteArticuloInsumo:async (id:number):Promise<void> => {
-        await fetch(`${BASE_URL}/ArticuloInsumo/${id}`,{
-            method:"DELETE"
-        });
+  getArticulosInsumo: async (): Promise<ArticuloInsumo[]> => {
+    try {
+      const response = await axios.get(BASE_URL);
+      return response.data;
+    } catch (error) {
+      throw error;
     }
-}
+  },
+
+  getArticuloInsumo: async (id: number): Promise<ArticuloInsumo> => {
+    try {
+      const response = await axios.get(`${BASE_URL}/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  createArticuloInsumo: async (articuloInsumo: ArticuloInsumo): Promise<ArticuloInsumo> => {
+    try {
+      const response = await axios.post(BASE_URL, articuloInsumo);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  updateArticuloInsumo: async (id: number, articuloInsumo: ArticuloInsumo): Promise<ArticuloInsumo> => {
+    try {
+      const response = await axios.put(`${BASE_URL}/${id}`, articuloInsumo);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  deleteArticuloInsumo: async (id: number): Promise<void> => {
+    try {
+      await axios.delete(`${BASE_URL}/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  },
+};

@@ -6,54 +6,62 @@ import { Button, Table } from "react-bootstrap";
 import { UnidadMedida } from "../../types/UnidadMedida";
 import { RubroArticulo } from "../../types/RubroArticulo";
 import { ModalType } from "../../types/ModalType";
+import ArticuloInsumoModal from "../ArticuloInsumoModal/ArticuloInsumoModal";
+import EditButton from "../EditButton/EditButton";
+import DeleteButton from "../DeleteButton/DeleteButton";
 
-//Inicializar un articulo por defecto y evitar el undefined
-const unidadMedidaInitialize : UnidadMedida = {
-  denominacion: "",
-  id: 0,
-  abreviatura: "",
-  fechaAlta: new Date(),
-  fechaBaja: new Date(),
-  fechaModificacion: new Date()
-}
 
-const rubroArticuloInitialize : RubroArticulo = {
-  denominacion: "",
-  id: 0,
-  fechaAlta: new Date(),
-  fechaBaja: new Date(),
-  fechaModificacion: new Date()
-}
-
-const initializableNewArticuloInsumo = ():ArticuloInsumo=>{
-  return {
-    id:0,
-    denominacion:"",
-    urlImagen:"",
-    precioCompra:0,
-    stockActual:0,
-    stockMinimo:0,
-    unidadMedida:unidadMedidaInitialize ,
-    rubroArticulo:rubroArticuloInitialize,
-  }
-}
-
-//Variable para asignar el articulo a mostrar en el modal
-const [articuloInsumo,setArticuloInsumo] = useState<ArticuloInsumo>(initializableNewArticuloInsumo);
-
-//const para manejar el estado del modal
-const [showModal,setShowModal] = useState(false);
-const [modalType,setModalType] = useState<ModalType>(ModalType.NONE);
-const [title,setTitle] = useState("");
-
-const handleClick = (newTitle:string,art:ArticuloInsumo,modal:ModalType)=>{
-  setTitle(newTitle);
-  setModalType(modal);
-  setArticuloInsumo(art);
-  setShowModal(true);
-}
 
 const ArticuloInsumoTabla = () => {
+  //Inicializar un articulo por defecto y evitar el undefined
+  const unidadMedidaInitialize : UnidadMedida = {
+    denominacion: "",
+    id: 0,
+    abreviatura: "",
+    fechaAlta: new Date(),
+    fechaBaja: new Date(),
+    fechaModificacion: new Date()
+  }
+
+  const rubroArticuloInitialize : RubroArticulo = {
+    denominacion: "",
+    id: 0,
+    fechaAlta: new Date(),
+    fechaBaja: new Date(),
+    fechaModificacion: new Date()
+  }
+
+  const initializableNewArticuloInsumo = ():ArticuloInsumo=>{
+    return {
+      id:0,
+      denominacion:"",
+      urlImagen:"",
+      precioCompra:0,
+      stockActual:0,
+      stockMinimo:0,
+      unidadMedida:unidadMedidaInitialize ,
+      rubroArticulo:rubroArticuloInitialize,
+      fechaAlta:new Date(),
+      fechaBaja:new Date(),
+      fechaModificacion:new Date()
+    }
+  }
+
+  //Variable para asignar el articulo a mostrar en el modal
+  const [articuloInsumo,setArticuloInsumo] = useState<ArticuloInsumo>(initializableNewArticuloInsumo);
+
+  //const para manejar el estado del modal
+  const [showModal,setShowModal] = useState(false);
+  const [modalType,setModalType] = useState<ModalType>(ModalType.NONE);
+  const [title,setTitle] = useState("");
+
+  const handleClick = (newTitle:string,art:ArticuloInsumo,modal:ModalType)=>{
+    setTitle(newTitle);
+    setModalType(modal);
+    setArticuloInsumo(art);
+    setShowModal(true);
+  }
+
 
   //Variable que almacena todos los articulos insumo 
   const [articulosInsumo,setArticulosInsumo] = useState<ArticuloInsumo[]>([]);
@@ -61,9 +69,13 @@ const ArticuloInsumoTabla = () => {
   //Variable que muestra el componente loader hasta que carguen los articulos
   const [isLoading,setIsLoading] = useState(true);
 
+  //Variable que va a actualizar los datos de la tabla luego de cada operacion exitosa
+  const [refreshData,setRefreshData] = useState(false);
+  
   //Este hook se va a ejecutar cada vez que se renderize el componente
+  //o refresh data cambie de estado
   useEffect(()=>{
-    //Funcion para obtener todos los productos
+    //Funcion para obtener todos los articulos
     const fetchArticulos = async () => {
       const articulosInsumo = await ArticuloInsumoService.getArticulosInsumo();
       setArticulosInsumo(articulosInsumo);
@@ -71,8 +83,7 @@ const ArticuloInsumoTabla = () => {
     }
 
     fetchArticulos();
-  },[]);
-
+  },[refreshData]);
 
 
   return (
@@ -85,26 +96,32 @@ const ArticuloInsumoTabla = () => {
         : (
           <Table hover>
               <thead>
-                <th>Denominación</th>
-                <th>Precio compra</th>
-                <th>Stock actual</th>
-                <th>Stock minimo</th>
-                <th>Unidad medida</th>
-                <th>Rubro articulo</th>
-                <th>Imagen</th>
+                <tr>
+                  <th>Imagen</th>
+                  <th>Denominación</th>
+                  <th>Precio compra</th>
+                  <th>Stock actual</th>
+                  <th>Stock minimo</th>
+                  <th>Unidad medida</th>
+                  <th>Rubro articulo</th>
+                  <th>Editar</th>
+                  <th>Eliminar</th>
+                </tr>
               </thead>
               <tbody>
                 {
                   articulosInsumo.map((articulo)=>{
                     return (
                       <tr key={articulo.id}>
+                          <td><img src={articulo.urlImagen} alt={articulo.denominacion} style={{width:"50px"}} /></td>
                           <td>{articulo.denominacion}</td>
                           <td>{articulo.precioCompra}</td>
                           <td>{articulo.stockActual}</td>
                           <td>{articulo.stockMinimo}</td>
                           <td>{articulo.unidadMedida.denominacion}</td>
                           <td>{articulo.rubroArticulo.denominacion}</td>
-                          <td><img src={articulo.urlImagen} alt={articulo.denominacion} style={{width:"50px"}} /></td>
+                          <td><EditButton onClick={()=> handleClick("Editar producto", articulo,ModalType.UPDATE)}/></td>
+                          <td><DeleteButton onClick={()=> handleClick("Borrar producto", articulo,ModalType.DELETE)}/></td>
                       </tr>
                     )
                   })
@@ -112,6 +129,18 @@ const ArticuloInsumoTabla = () => {
               </tbody>
           </Table>
         )
+      }
+      {
+          showModal && (
+              <ArticuloInsumoModal
+                  show={showModal}
+                  onHide={()=>setShowModal(false)}
+                  title={title}
+                  modalType={modalType}
+                  art={articuloInsumo}
+                  refreshData={setRefreshData}
+              />
+          )
       }
     </section>
   )
