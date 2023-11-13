@@ -251,14 +251,15 @@ const ArticuloInsumoModal = ({show,onHide,title,modalType,art,refreshData}:Artic
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </Form.Group>
+                                <Modal.Footer className="mt-4">
+                                    <Button variant="secondary" onClick={onHide}>Cancelar</Button>
+                                    <Button variant="primary" type="submit" disabled={!formik.isValid}>Guardar</Button>
+                                </Modal.Footer>
                                 
                             </Form>
                         </Modal.Body>
 
-                        <Modal.Footer className="mt-4">
-                            <Button variant="secondary" onClick={onHide}>Cancelar</Button>
-                            <Button variant="primary" type="submit" disabled={!formik.isValid}>Guardar</Button>
-                        </Modal.Footer>
+                        
 
 
                     </Modal>

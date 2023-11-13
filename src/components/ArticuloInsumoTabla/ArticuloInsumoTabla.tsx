@@ -130,7 +130,7 @@ const ArticuloInsumoTabla = () => {
                 <tr className="add-row">
                   <td>
                     <button onClick={()=>handleClick("Nuevo articulo",initializableNewArticuloInsumo(),ModalType.CREATE)} className="boton-agregar">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-circle-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#949494" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="#949494" fill="none" strokeLinecap="round" strokeLinejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
                         <path d="M9 12h6"></path>
