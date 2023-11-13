@@ -7,7 +7,7 @@ interface DeleteButtonProps {
 export const DeleteButton = ({onClick}:DeleteButtonProps) => {
     return(
         <TrashFill
-            color="#D32F2F"
+            color="#B60E02"
             size={24}
             onClick={onClick}
             onMouseEnter={()=>{document.body.style.cursor='pointer'}}

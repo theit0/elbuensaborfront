@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { UnidadMedida } from "../../types/UnidadMedida";
 import { RubroArticulo } from "../../types/RubroArticulo";
 import { RubroArticuloService } from "../../services/RubroArticulo";
-
+import './ArticuloInsumoModal.css'
 
 
 
@@ -122,7 +122,6 @@ const ArticuloInsumoModal = ({show,onHide,title,modalType,art,refreshData}:Artic
                     
                     <Modal.Body>
                         <p>¿Está seguro que desea eliminar el producto?</p>
-                        <strong>{art.denominacion}</strong>
                     </Modal.Body>
 
                     <Modal.Footer>
@@ -139,7 +138,7 @@ const ArticuloInsumoModal = ({show,onHide,title,modalType,art,refreshData}:Artic
                                 {title}
                             </Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>
+                        <Modal.Body className="modal-inputs">
                             <Form onSubmit={formik.handleSubmit} >
                               <Form.Group controlId="formDenominacion">
                                     <Form.Label>Denominación</Form.Label>
@@ -253,15 +252,13 @@ const ArticuloInsumoModal = ({show,onHide,title,modalType,art,refreshData}:Artic
                                     </Dropdown>
                                 </Form.Group>
                                 
-                              
-                                <Modal.Footer className="mt-4">
-                                    <Button variant="secondary" onClick={onHide}>Cancelar</Button>
-                                    <Button variant="primary" type="submit" disabled={!formik.isValid}>Guardar</Button>
-                                </Modal.Footer>
                             </Form>
                         </Modal.Body>
 
-                       
+                        <Modal.Footer className="mt-4">
+                            <Button variant="secondary" onClick={onHide}>Cancelar</Button>
+                            <Button variant="primary" type="submit" disabled={!formik.isValid}>Guardar</Button>
+                        </Modal.Footer>
 
 
                     </Modal>

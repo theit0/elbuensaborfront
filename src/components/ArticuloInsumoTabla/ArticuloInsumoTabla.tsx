@@ -9,7 +9,7 @@ import { ModalType } from "../../types/ModalType";
 import ArticuloInsumoModal from "../ArticuloInsumoModal/ArticuloInsumoModal";
 import EditButton from "../EditButton/EditButton";
 import DeleteButton from "../DeleteButton/DeleteButton";
-
+import './ArticuloInsumoTabla.css'
 
 
 const ArticuloInsumoTabla = () => {
@@ -87,10 +87,11 @@ const ArticuloInsumoTabla = () => {
 
 
   return (
-    <section className="p-5">
-      <Button onClick={()=>handleClick("Nuevo articulo",initializableNewArticuloInsumo(),ModalType.CREATE)}>
-        Nuevo articulo
-      </Button>
+    <section className="p-5 tabla-section">
+      <div className="titulo-container">
+        <h1 style={{fontWeight:"800"}}>Gestionar insumos</h1>
+        <p>Cree, edite, modifique o elimine insumos.</p>
+      </div>
       {
         isLoading ? <Loader/>
         : (
@@ -112,8 +113,8 @@ const ArticuloInsumoTabla = () => {
                 {
                   articulosInsumo.map((articulo)=>{
                     return (
-                      <tr key={articulo.id}>
-                          <td><img src={articulo.urlImagen} alt={articulo.denominacion} style={{width:"50px"}} /></td>
+                      <tr key={articulo.id} className="linea">
+                          <td><img src={articulo.urlImagen} alt={articulo.denominacion} style={{width:"50px",height:"50px",objectFit:"cover"}} /></td>
                           <td>{articulo.denominacion}</td>
                           <td>{articulo.precioCompra}</td>
                           <td>{articulo.stockActual}</td>
@@ -126,6 +127,26 @@ const ArticuloInsumoTabla = () => {
                     )
                   })
                 }
+                <tr className="add-row">
+                  <td>
+                    <button onClick={()=>handleClick("Nuevo articulo",initializableNewArticuloInsumo(),ModalType.CREATE)} className="boton-agregar">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-circle-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#949494" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                        <path d="M9 12h6"></path>
+                        <path d="M12 9v6"></path>
+                      </svg>
+                    </button>
+                  </td>
+                  <td style={{color:"#949494"}}>Añadir insumo...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                  <td style={{color:"#949494"}}>...</td>
+                </tr>
               </tbody>
           </Table>
         )
