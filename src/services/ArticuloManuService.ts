@@ -6,7 +6,7 @@ export const ArticuloManuService = {
     
     getArticles: async (): Promise<ArticuloManu[]> => {
        
-        const response = await fetch(`${BASE_URL}/ArticuloManufacturado`);
+        const response = await fetch(`${BASE_URL}/ArticuloManufacturado/busquedaPorAlta`);
         const data = await response.json();
         return data;
     },
@@ -21,7 +21,7 @@ export const ArticuloManuService = {
     },
 
     createArticle:async (article:ArticuloManu):Promise<ArticuloManu> => {
-
+    
         const response = await fetch(`${BASE_URL}/ArticuloManufacturado`, {
             method: "POST",
             headers: {
@@ -37,6 +37,7 @@ export const ArticuloManuService = {
 
     updateArticle: async (id: number, article: ArticuloManu): Promise<ArticuloManu> => {
         
+        article.fechaModificacion = new Date()
         const response = await fetch(`${BASE_URL}/ArticuloManufacturado/${id}`, {
             method: "PUT",
             headers: {
@@ -51,12 +52,21 @@ export const ArticuloManuService = {
 
     
 
-    deleteArticle: async (id:number): Promise<void> => {
-        await fetch(`${BASE_URL}/ArticuloManufacturado/${id}`, {
-            method: "DELETE"
-        });
-    }
+   
+    deleteArticle: async (id: number, art:ArticuloManu): Promise<void> => {
+        
+        const fechaBaja= new Date();
+            const response = await fetch(`${BASE_URL}/ArticuloManufacturado/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({...art,fechaBaja}), // Envía la nueva fecha de baja en el cuerpo de la solicitud
+            });
     
-
+            const data = await response.json();
+            return data;
+        }
+    
   
-}
+    };

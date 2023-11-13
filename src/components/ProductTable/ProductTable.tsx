@@ -56,8 +56,8 @@ const ProductTable = () => {
             urlImagen: "",
             tiempoEstimadoCocina: 0,
             fechaAlta : new Date(),
-            fechaBaja : new Date(),
-            fechaModificacion:new Date(),
+            fechaBaja : null,
+            fechaModificacion:null,
             rubroArticulo:rubroArticuloInitialize
             };
     };

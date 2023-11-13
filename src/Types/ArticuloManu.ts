@@ -9,7 +9,7 @@ export interface ArticuloManu{
     costo : number;
     urlImagen: string;
     fechaAlta : Date;
-    fechaBaja: Date;
-    fechaModificacion: Date
-    rubroArticulo:RubroArticulo;
+    fechaBaja: Date | null;
+    fechaModificacion: Date | null;
+    rubroArticulo:RubroArticulo
 }

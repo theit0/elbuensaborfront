@@ -57,10 +57,10 @@ const ProductModal = ({show, onHide, title, artl, modalType, refreshData}:Produc
 
 
 //Función handleDelete (DELETE)
-const handleDelete = async () => {
+const handleDelete = async (art: ArticuloManu) => {
     try {
-        await ArticuloManuService.deleteArticle(artl.id);
-        toast.success("Articulo borrado", {
+        await ArticuloManuService.deleteArticle(art.id,art);
+        toast.success("Articulo dado de baja", {
             position: "top-center",
         });
         onHide();
@@ -112,7 +112,7 @@ useEffect(() => {
             <>
 
             {modalType === ModalType.DELETE ? (
-                <>
+                
 
                 <Modal show={show} onHide={onHide} centered backdrop="static">
 
@@ -131,13 +131,13 @@ useEffect(() => {
                         Cancelar
                     </Button>
 
-                    <Button variant="danger" onClick={handleDelete}>
+                    <Button variant="danger" onClick={()=>handleDelete(artl)}>
                         Borrar
                     </Button>
                 </Modal.Footer>
 
                 </Modal>
-                </>
+                
             ) : (
 
                 <>
