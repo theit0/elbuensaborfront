@@ -27,7 +27,6 @@ const ArticuloInsumoModal = ({show,onHide,title,modalType,art,refreshData}:Artic
     
 
     const handleSaveUpdate = async (art:ArticuloInsumo) => {
-        
         try {
             
             const isNew = art.id === 0;
@@ -49,7 +48,7 @@ const ArticuloInsumoModal = ({show,onHide,title,modalType,art,refreshData}:Artic
 
     const handleDelete = async ()=>{
         try {
-            await ArticuloInsumoService.deleteArticuloInsumo(art.id);
+            await ArticuloInsumoService.deleteArticuloInsumo(art.id,art);
             toast.success("Articulo insumo eliminado con éxito",{
                 position:"top-center"
             });
@@ -107,8 +106,6 @@ const ArticuloInsumoModal = ({show,onHide,title,modalType,art,refreshData}:Artic
     validateOnBlur:true,
     onSubmit:(obj:ArticuloInsumo) => handleSaveUpdate(obj),
   })
-
-
 
 
     return (
@@ -226,7 +223,7 @@ const ArticuloInsumoModal = ({show,onHide,title,modalType,art,refreshData}:Artic
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu>
                                         {unidadesMedida.map((unidad) => (
-                                            <Dropdown.Item key={unidad.id}onClick={() => formik.setValues({ ...formik.values, unidadMedida: unidad })}>
+                                            <Dropdown.Item key={unidad.id} onClick={() => formik.setValues({ ...formik.values, unidadMedida: unidad })}>
                                             {unidad.denominacion}
                                             </Dropdown.Item>
                                         ))}
@@ -258,9 +255,6 @@ const ArticuloInsumoModal = ({show,onHide,title,modalType,art,refreshData}:Artic
                                 
                             </Form>
                         </Modal.Body>
-
-                        
-
 
                     </Modal>
                 </>

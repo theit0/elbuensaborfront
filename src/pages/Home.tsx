@@ -1,10 +1,11 @@
-import CarouselHome from "../components/Carousel/CarouselHome"
-
+import ArticulosManufacturados from "../components/ArticulosManufacturadosHome/ArticulosManufacturados"
+import Banner from "../components/Banner/Banner"
 
 const Home = () => {
   return (
     <>
-      <CarouselHome/>
+      <Banner/>
+      <ArticulosManufacturados/>
     </>
   )
 }

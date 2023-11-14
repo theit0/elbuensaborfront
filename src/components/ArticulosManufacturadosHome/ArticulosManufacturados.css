@@ -1,0 +1,14 @@
+.articulos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.seccion-articulos-rubro{
+    display: grid;
+    gap: 1rem;
+    text-align: center;
+    padding-bottom: 4rem;
+    place-content: center;
+}

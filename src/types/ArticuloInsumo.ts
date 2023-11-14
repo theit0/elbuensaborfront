@@ -11,6 +11,6 @@ export interface ArticuloInsumo {
     unidadMedida:UnidadMedida;
     rubroArticulo:RubroArticulo;
     fechaAlta:Date;
-    fechaBaja:Date;
-    fechaModificacion:Date;
+    fechaBaja:Date | null;
+    fechaModificacion:Date | null;
 }

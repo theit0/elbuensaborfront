@@ -6,7 +6,7 @@ const BASE_URL = 'http://localhost:8080/api/v1/ArticuloInsumo';
 export const ArticuloInsumoService = {
   getArticulosInsumo: async (): Promise<ArticuloInsumo[]> => {
     try {
-      const response = await axios.get(BASE_URL);
+      const response = await axios.get(`${BASE_URL}/busquedaPorAlta`);
       return response.data;
     } catch (error) {
       throw error;
@@ -32,6 +32,7 @@ export const ArticuloInsumoService = {
   },
 
   updateArticuloInsumo: async (id: number, articuloInsumo: ArticuloInsumo): Promise<ArticuloInsumo> => {
+
     try {
       const response = await axios.put(`${BASE_URL}/${id}`, articuloInsumo);
       return response.data;
@@ -40,9 +41,11 @@ export const ArticuloInsumoService = {
     }
   },
 
-  deleteArticuloInsumo: async (id: number): Promise<void> => {
+  deleteArticuloInsumo: async (id: number , articuloInsumo:ArticuloInsumo): Promise<void> => {
+    const fechaBaja = new Date();
     try {
-      await axios.delete(`${BASE_URL}/${id}`);
+      const response = await axios.put(`${BASE_URL}/${id}`, {...articuloInsumo,fechaBaja});
+      return response.data;
     } catch (error) {
       throw error;
     }

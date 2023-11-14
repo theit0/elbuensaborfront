@@ -3,6 +3,6 @@ export interface UnidadMedida {
     denominacion:string;
     abreviatura:string;
     fechaAlta:Date;
-    fechaBaja:Date;
-    fechaModificacion:Date
+    fechaBaja:Date | null ;
+    fechaModificacion:Date | null;
 }
