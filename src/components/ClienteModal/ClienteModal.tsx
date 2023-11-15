@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+
 import { Cliente } from '../../types/Cliente';
 import { ModalType } from '../../types/ModalType';
 import { Button, Modal } from 'react-bootstrap';
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import { Form } from 'react-bootstrap';
-import { Bucket } from 'react-bootstrap-icons';
 import { ClienteService } from '../../services/ClienteService';
 import { toast } from 'react-toastify';
 
@@ -20,8 +19,6 @@ type ClienteModalProps = {
     refreshData : React.Dispatch<React.SetStateAction<boolean>>;
 
 }
-
-
 
 
 
@@ -74,6 +71,10 @@ const validationSchema = () => {
     })
 };
 
+
+
+
+
 const formik = useFormik({
     initialValues : cliente,
     validationSchema : validationSchema(),
@@ -83,16 +84,8 @@ const formik = useFormik({
 
 });
 
-{/*Lo hice por que sino no podia pasarle CLIENTE al handleDelete como argumento
-const formik2 = useFormik({
-    initialValues : cliente,
-    validationOnChange : true,
-    validationOnBlur : true,
-    onSubmit : (obj :Cliente) => handleDelete(obj),
 
-});
 
-*/}
     return (
     <> 
         {modalType == ModalType.DELETE ? (

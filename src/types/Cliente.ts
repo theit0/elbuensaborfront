@@ -1,3 +1,5 @@
+import { Usuario } from "./Usuario";
+
 export interface Cliente{
    
         id : number;
@@ -5,8 +7,9 @@ export interface Cliente{
         apellido : String;
         email : String;
         telefono : String;
-        fechaAlta :  Date; // Tenia LocalDateTime , ver si funciona con Date...
-        fechaBaja :  Date;
-        fechaModificacion : Date;    
-    }
+        fechaAlta :  Date | null; // Tenia LocalDateTime , ver si funciona con Date...
+        fechaBaja :  Date | null;
+        fechaModificacion : Date | null;   
+        usuario: Usuario; 
+}
 

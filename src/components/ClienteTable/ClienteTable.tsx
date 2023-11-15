@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ClienteService } from '../../services/ClienteService';
 import { Cliente } from '../../types/Cliente';
 import Loader from '../Loader/Loader';
-import { Button, Table } from 'react-bootstrap';
+import {  Table } from 'react-bootstrap';
 import { ModalType } from '../../types/ModalType';
 import ClienteModal from '../ClienteModal/ClienteModal';
 import EditButton from '../EditButton/EditButton';
@@ -37,6 +37,15 @@ const ClienteTable = () => {
     },[refreshData]);
 
 
+    const UsuarioInitialize = {
+        id : 0,
+        username : "",
+        contraseña:"",
+        fechaAlta : null  ,
+        fechaBaja :  null ,
+        fechaModificacion : null ,
+    }
+
     //test
   // console.log(JSON.stringify(clientes,null,2));
   const initializableNewCliente = (): Cliente => {
@@ -51,7 +60,7 @@ const ClienteTable = () => {
         fechaAlta : new Date(),
         fechaBaja : null,
         fechaModificacion:null,
-        usuario : null
+        usuario : UsuarioInitialize
 
     };
 };
@@ -107,7 +116,6 @@ const handleClick = (newTitle : string,cliente : Cliente,modal : ModalType) => {
                     <td>{cliente.usuario.username}</td> 
                     <td><EditButton onClick={() => handleClick("Editar cliente", cliente , ModalType.UPDATE)}/></td>
                     <td><DeleteButton onClick={() => handleClick("Eliminar cliente", cliente , ModalType.DELETE)}/></td>
-                    
                 </tr>           
             ))}
         </tbody>
