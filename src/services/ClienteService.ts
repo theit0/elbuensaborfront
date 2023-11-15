@@ -39,6 +39,12 @@ export const ClienteService = {
     },
 
     updateCliente: async (id: number, cliente: Cliente): Promise<Cliente> => {
+
+        cliente.fechaModificacion = new Date();
+
+          // Eliminar la propiedad 'authorities' del objeto cliente
+        delete cliente.usuario.authorities;
+
         try {
             const response = await axios.put(`${BASE_URL}/clientes/${id}`, cliente, {
                 headers: {
@@ -53,6 +59,10 @@ export const ClienteService = {
     },
 
     deleteCliente: async (id: number, cliente: Cliente): Promise<void> => {
+
+          // Eliminar la propiedad 'authorities' del objeto cliente
+            delete cliente.usuario.authorities;
+            
         try {
             const fechaBaja = new Date();
             const response = await axios.put(`${BASE_URL}/clientes/${id}`, {...cliente, fechaBaja}, {
