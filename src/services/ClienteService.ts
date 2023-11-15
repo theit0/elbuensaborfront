@@ -65,6 +65,7 @@ export const ClienteService = {
             
         try {
             const fechaBaja = new Date();
+            cliente.usuario.fechaBaja = new Date();
             const response = await axios.put(`${BASE_URL}/clientes/${id}`, {...cliente, fechaBaja}, {
                 headers: {
                     'Content-Type': 'application/json'
