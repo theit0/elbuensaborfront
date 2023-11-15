@@ -36,7 +36,12 @@ export const ClienteService = {
     },
 
     updateCliente: async (id: number,cliente: Cliente): Promise<Cliente> => {
-        
+        cliente.fechaModificacion = new Date();
+
+          // Eliminar la propiedad 'authorities' del objeto cliente
+        delete cliente.usuario.authorities;
+
+
         const response = await fetch(`${BASE_URL}/clientes/${id}`, {
             method: "PUT",
             headers: {
@@ -50,6 +55,11 @@ export const ClienteService = {
     },
     deleteCliente: async (id:number,cliente : Cliente): Promise<void> => {
         const fechaBaja= new Date();
+
+          // Eliminar la propiedad 'authorities' del objeto cliente
+            delete cliente.usuario.authorities;
+            
+
         const response = await fetch(`${BASE_URL}/clientes/${id}`, {
             method: "PUT",
             headers: {
