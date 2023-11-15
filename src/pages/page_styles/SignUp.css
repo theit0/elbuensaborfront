@@ -1,0 +1,19 @@
+.signup-section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.signup-section .container {
+    width: 500px;
+}
+
+.signup-section button {
+    width: 100%;
+    border-radius: 0;
+}
+

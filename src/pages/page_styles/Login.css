@@ -1,0 +1,19 @@
+.login-section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.login-section .container {
+    width: 500px;
+}
+
+.login-section button {
+    width: 100%;
+    border-radius: 0;
+}
+

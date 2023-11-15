@@ -12,30 +12,24 @@ header nav a {
     color: black;
 }
 
+
+
+
 .navlink{
     width: fit-content;
     display: flex;
     align-items: center;
     gap: .2rem;
-    padding: .5rem 1rem .5rem 1rem;
+    margin: 0 !important;
+    background: none !important;
+    border: none;
+    color: black !important;
+    padding: .5rem 1rem;
 }
 
-.drop-button button{
-    font-weight: 800;
-    margin-left: 1rem;
-    background-color: #E5030B !important;
-    color: white;
-    border-radius: 0 !important;
-    border-color: #E5030B;
+.navlink:hover{
+    background-color: #EAECEC !important;
 }
-
-.drop-button button:hover{
-    border-color: #E5030B;
-}
-.drop-button button:active{
-    border-color: #E5030B !important; 
-}
-
 
 .navlink img{
     width: 15px;
@@ -65,7 +59,6 @@ nav{
 
 nav{
     display: flex;
-    gap: 1rem;
 }
 
 .dropdown-button{
