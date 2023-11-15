@@ -36,7 +36,7 @@ const ArticulosManufacturados = () => {
                 (
                     articles.map((articulo)=>{
                         return (
-                            <ArticuloManuCard article={articulo}/>
+                            <ArticuloManuCard article={articulo} refreshData={setRefreshData}/>
                         )
                     })
                 )

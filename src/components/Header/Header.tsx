@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 import './Header.css'
 
@@ -19,9 +21,21 @@ const Header = () => {
             <div className={isMenuToggled ? 'navlinks-dropped' : 'navlinks'} >
                 <Link to="/" className='navlink'><img src="src/assets/home.svg"/>Inicio</Link>
             </div>
+
             <div className={isMenuToggled ? 'navlinks-dropped' : 'navlinks'} >
-                <Link to="/gestionar-articulos-insumo" className='navlink'><img src="src/assets/baguette.svg"/>ABM Artículos Insumo</Link>
+                <Link to="/carrito" className='navlink'><img src="src/assets/shopping-cart.svg"/>Carrito</Link>
             </div>
+
+            <DropdownButton className="drop-button " title="ABMS">
+                <Dropdown.Item className={isMenuToggled ? 'navlinks-dropped' : 'navlinks'} >
+                    <Link to="/gestionar-articulos-insumo" className='navlink'><img src="src/assets/baguette.svg"/>ABM Insumo</Link>
+                </Dropdown.Item>
+                <Dropdown.Item className={isMenuToggled ? 'navlinks-dropped' : 'navlinks'} >
+                    <Link to="/ABM-articulos-manufacturados" className='navlink'><img src="src/assets/baguette.svg"/>ABM Articulos manufacturados</Link>
+                </Dropdown.Item>
+            </DropdownButton>
+
+            
             
             <button className='dropdown-button' onClick={() => setIsMenuToggled(!isMenuToggled)}>
                 {

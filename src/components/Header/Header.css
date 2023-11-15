@@ -20,12 +20,20 @@ header nav a {
     padding: .5rem 1rem .5rem 1rem;
 }
 
-.navlink:hover{
-    background-color: #EAECEC;
+.drop-button button{
+    font-weight: 800;
+    margin-left: 1rem;
+    background-color: #E5030B !important;
+    color: white;
+    border-radius: 0 !important;
+    border-color: #E5030B;
 }
 
-.navlink:active{
-    background: #e6e6e6;
+.drop-button button:hover{
+    border-color: #E5030B;
+}
+.drop-button button:active{
+    border-color: #E5030B !important; 
 }
 
 
@@ -57,6 +65,7 @@ nav{
 
 nav{
     display: flex;
+    gap: 1rem;
 }
 
 .dropdown-button{

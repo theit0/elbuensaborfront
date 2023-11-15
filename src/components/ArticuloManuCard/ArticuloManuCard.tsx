@@ -1,23 +1,28 @@
 import { useState } from "react"
 import { ArticuloManufacturado } from "../../types/ArticuloManufacturado"
 import "./Articulo.css"
+import { Link } from "react-router-dom"
+import { setArticuloCarrito } from "../../store/actions/CarritoActions"
 
 type ArticuloProps = {
-    article:ArticuloManufacturado
+    article:ArticuloManufacturado,
+    refreshData: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ArticuloManuCard = ({article}:ArticuloProps) => {
+const ArticuloManuCard = ({article,refreshData}:ArticuloProps) => {
 
     const [seClickeo,setSeClickeo] = useState('')
     const [seClickeoBool,setseClickeoBool] = useState(false)
 
     const manejarAñadirCarrito = ()=>{
+        setArticuloCarrito(article);
         setSeClickeo("boton-agregado-carrito")
         setseClickeoBool(true)
         setTimeout(() => {
             setSeClickeo("")
             setseClickeoBool(false)
         }, 500);
+        refreshData(prevState => !prevState);
     }
     return (
         <article className='articulo'>
@@ -50,7 +55,7 @@ const ArticuloManuCard = ({article}:ArticuloProps) => {
                             </svg>
                         }
                     </button>
-                    <a>
+                    <Link to={`/articulosManufacturados/${article.id}`}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-photo-search" width="15" height="15" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M15 8h.01"></path>
@@ -60,7 +65,7 @@ const ArticuloManuCard = ({article}:ArticuloProps) => {
                             <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l2 2"></path>
                         </svg>
                         Ver más
-                    </a>
+                    </Link>
                 </div>
             </article>
   )

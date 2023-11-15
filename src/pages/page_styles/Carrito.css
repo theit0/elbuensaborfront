@@ -1,0 +1,127 @@
+.carrito-container {
+    
+    padding-top: 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+.titulo-carrito {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.titulo-carrito h1 {
+    
+    margin: 0 !important;
+    font-size: 2rem;
+    font-weight: 800;
+}
+.titulo-carrito span {
+    font-size: 14px;
+    color: #929191;
+}
+
+.mensaje-vacio{
+    text-align: center;
+    color: white;
+    max-width: 450px;
+    background-color: #E5030B;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+
+.resumen-carrito {
+    background-color: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: fit-content;
+    padding: .5rem 1.5rem 1.5rem 1.5rem;
+    font-weight: 600;
+}
+.resumen-carrito div {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 0 ;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+
+.resumen-carrito article button {
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    display: flex;
+    gap: .5rem;
+    padding: .75rem 1rem;
+    width: 100%;
+    background-color: black;
+    color: white;
+    transition: .1s ease;
+    border: none;
+}
+.resumen-carrito article button:hover {
+    scale: 1.025;
+}
+.resumen-carrito article button:active {
+    scale: 0.975;
+}
+
+
+
+.seguir-viendo-boton{
+    padding: 0 1rem 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    text-decoration: none;
+    color: #929191;
+    width: fit-content;
+}
+
+.seguir-viendo-boton:hover{
+    
+    color: black ;
+}
+
+.container-principal-carrito{
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+.articulos-carrito{
+    padding-bottom: 1.5rem;
+}
+
+
+@media (max-width : 1014px) {
+    .carrito-container{
+        padding-top: 2rem;
+    }
+}
+
+@media (max-width : 700px) {
+    .carrito-container{
+        padding-top: 1rem;
+    }
+    .container-principal-carrito{
+        padding: 0 1rem;
+    }
+    .resumen-carrito {
+        margin-bottom: 2rem;
+    }
+    .container-principal-carrito{
+        gap: 2rem;
+    }
+    .articulos-carrito{
+        padding-bottom: 0;
+    }
+}
